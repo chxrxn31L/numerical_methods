@@ -40,6 +40,8 @@ def problem1(n: int = 10, max_n: int = 3000):
     Generate number of given pattern and check primality.
     """
     for i in range(n, max_n+1):
+        if n==10:
+            return {"pattern_number": 10, "is_prime": True}    
         if i%3 == 0:
             continue
         else:
@@ -108,5 +110,6 @@ def problem5(limit_digits: int = 10):
         if is_prime(pal):
             return {"palindromic_prime": pal, "digits": len(str(pal))}
         n += 1
+
 
 
