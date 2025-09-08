@@ -47,13 +47,13 @@ def problem1(n: int = 10, max_n: int = 3000):
     return {"pattern_number": None, "is_prime": False}
 
 
-def problem2(limit: int = 50):
+def problem2(llimit: int = 2, ulimit: int = 20):
     """
     Problem 2:
     Repunit primes between N=2 and limit.
     """
     results = []
-    for N in range(2, limit+1):
+    for N in range(llimit, ulimit+1):
         if is_prime(N):  # only need to check prime N
             rep = generate_repunit(N)
             # NOTE: true primality check for repunits is expensive
@@ -94,38 +94,15 @@ def problem5(limit_digits: int = 10):
     (For demo: we generate small palindromes and test primality).
     """
     n = 10**(limit_digits-1)
-    while True:
+    maxi = 10**limit_digits
+    while n <maxi:
         s = str(n)
+        l = int(s[0])
+        if l % 2 == 0:
+            n += 10**(limit_digits-1)
+            continue
         pal = int(palindrome_number(s))
         if is_prime(pal):
             return {"palindromic_prime": pal, "digits": len(str(pal))}
         n += 1
 
-
-def problem6(p: int = 5):
-    """
-    Problem 6:
-    Generate perfect number using Mersenne prime formula:
-    If 2^p - 1 is prime, then 2^(p-1)(2^p - 1) is perfect.
-    """
-    if is_prime(2**p - 1):
-        perfect = 2**(p-1) * (2**p - 1)
-        return {"p": p, "perfect_number": perfect}
-    else:
-        return {"p": p, "perfect_number": None}
-
-
-def problem7_goldbach(even_n: int = 20):
-    """
-    Problem 7 (example):
-    Goldbach's conjecture - every even n > 2 is sum of two primes.
-    Return one such pair.
-    """
-    if even_n % 2 != 0 or even_n <= 2:
-        return {"error": "Input must be even > 2"}
-
-    for i in range(2, even_n):
-        if is_prime(i) and is_prime(even_n - i):
-            return {"n": even_n, "pair": (i, even_n - i)}
-
-    return {"n": even_n, "pair": None}
