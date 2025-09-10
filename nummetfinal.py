@@ -148,7 +148,6 @@ def problem4(p1: int, p2: int):
 #         return {"palindromic_prime": None, "digits": 0}
 
 
-
 def find_palindromic_prime(num_digits: int):
     """
     Generalized function to find a palindromic prime with at least num_digits using Miller-Rabin.
